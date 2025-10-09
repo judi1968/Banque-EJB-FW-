@@ -10,7 +10,7 @@ import java.util.Properties;
 
 @Service
 public class BanqueClientService {
-
+    
     private BanqueRemote banqueRemote;
 
     public BanqueClientService() {

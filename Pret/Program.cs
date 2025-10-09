@@ -20,6 +20,13 @@ builder.Services.AddScoped<PersonneService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+    });
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

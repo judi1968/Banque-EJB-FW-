@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "C+hUeYb4ZKM=",
+  "dgSpecHash": "q3l1kRoxm5A=",
   "success": true,
-  "projectFilePath": "D:\\IT University\\S5\\Programmation Mr Tahina\\1 - Banque (Ejb WS)\\Pret\\Pret.csproj",
+  "projectFilePath": "D:\\IT University\\S5\\Programmation Mr Tahina\\1 - Banque (Ejb WS)\\pret\\Pret.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Oracle\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\Oracle\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",

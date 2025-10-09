@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\IT University\\S5\\Programmation Mr Tahina\\1 - Banque (Ejb WS)\\Pret\\Pret.csproj": {}
+    "D:\\IT University\\S5\\Programmation Mr Tahina\\1 - Banque (Ejb WS)\\pret\\Pret.csproj": {}
   },
   "projects": {
-    "D:\\IT University\\S5\\Programmation Mr Tahina\\1 - Banque (Ejb WS)\\Pret\\Pret.csproj": {
+    "D:\\IT University\\S5\\Programmation Mr Tahina\\1 - Banque (Ejb WS)\\pret\\Pret.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\IT University\\S5\\Programmation Mr Tahina\\1 - Banque (Ejb WS)\\Pret\\Pret.csproj",
+        "projectUniqueName": "D:\\IT University\\S5\\Programmation Mr Tahina\\1 - Banque (Ejb WS)\\pret\\Pret.csproj",
         "projectName": "Pret",
-        "projectPath": "D:\\IT University\\S5\\Programmation Mr Tahina\\1 - Banque (Ejb WS)\\Pret\\Pret.csproj",
+        "projectPath": "D:\\IT University\\S5\\Programmation Mr Tahina\\1 - Banque (Ejb WS)\\pret\\Pret.csproj",
         "packagesPath": "C:\\Users\\Oracle\\.nuget\\packages\\",
-        "outputPath": "D:\\IT University\\S5\\Programmation Mr Tahina\\1 - Banque (Ejb WS)\\Pret\\obj\\",
+        "outputPath": "D:\\IT University\\S5\\Programmation Mr Tahina\\1 - Banque (Ejb WS)\\pret\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Oracle\\AppData\\Roaming\\NuGet\\NuGet.Config"
