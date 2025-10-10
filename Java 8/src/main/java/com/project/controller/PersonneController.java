@@ -1,7 +1,7 @@
 package com.project.controller;
 
 import com.project.model.Personne;
-import com.project.service.PersonneService;
+import com.project.service.PersonneServices;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,9 +10,9 @@ import java.util.List;
 @RequestMapping("/personnes")
 public class PersonneController {
 
-    private final PersonneService service;
+    private final PersonneServices service;
 
-    public PersonneController(PersonneService service) {
+    public PersonneController(PersonneServices service) {
         this.service = service;
     }
 
