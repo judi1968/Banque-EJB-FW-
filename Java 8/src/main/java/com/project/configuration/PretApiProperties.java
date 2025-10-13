@@ -18,3 +18,4 @@ public class PretApiProperties {
         this.url = url;
     }
 }
+

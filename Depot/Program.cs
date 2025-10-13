@@ -1,4 +1,5 @@
 using Depot.Data;
+using Depot.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,7 +14,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddControllers();
 
 // Ajouter le service PersonneService
-builder.Services.AddScoped<Depot.Services.PersonneService>();
+builder.Services.AddScoped<PersonneService>();
+builder.Services.AddScoped<MouvementDepotService>();
+builder.Services.AddScoped<MontantPersonneService>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

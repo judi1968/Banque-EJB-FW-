@@ -10,5 +10,7 @@ namespace Depot.Data
         }
 
         public DbSet<Personne> Personne { get; set; }
+         public DbSet<MouvementDepot> MouvementDepot { get; set; }
+         public DbSet<MontantPersonne> MontantPersonne { get; set; }
     }
 }

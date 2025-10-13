@@ -16,6 +16,9 @@ builder.Services.AddControllers();
 
 // Ajouter le service PersonneService
 builder.Services.AddScoped<PersonneService>();
+builder.Services.AddScoped<MouvementPretService>();
+builder.Services.AddScoped<MontantPersonneService>();
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

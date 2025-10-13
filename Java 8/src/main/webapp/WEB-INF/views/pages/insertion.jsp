@@ -118,60 +118,8 @@
               <div class="col-lg-4 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Mouvement courant</h4>
-                    <form class="forms-sample" href="/courant" method="post">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group row">
-                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Personne</label>
-                            <div class="col-sm-9">
-                              <select id="exampleInputUsername2" name="personneId" class="form-control">
-                                <option value="">-- Sélectionnez une personne --</option>
-                                <%
-                                    if (personnes != null && !personnes.isEmpty()) {
-                                        for (Personnes p : personnes) {
-                                %>
-                                    <option value="<%= p.getId() %>"><%= p.getNom() %></option>
-                                <%
-                                        }
-                                    } else {
-                                %>
-                                    <option disabled>Aucune personne disponible</option>
-                                <%
-                                    }
-                                %>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Type action</label>
-                            <div class="col-sm-9">
-                              <select id="exampleInputUsername2" name="personneId" class="form-control">
-                                <option value="">-- Sélectionnez un action --</option>
-                                <option value="1">Faire un retrait</option>
-                                <option value="2">Mettre un argent</option>
-                              </select>
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Montant</label>
-                            <div class="col-sm-9">
-                              <input type="text" class="form-control" id="exampleInputMobile" placeholder="Mobile number">
-                            </div>
-                          </div>
-                          
-                        </div>  
-                      </div>
-                      <button type="submit" class="btn btn-primary me-2">Inserer</button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-              <div class="col-lg-4 grid-margin stretch-card">
-                <div class="card">
-                  <div class="card-body">
-                    <h4 class="card-title">Mouvement courant</h4>
-                    <form class="forms-sample" action="/courant" method="post">
+                    <h4 class="card-title">Mouvement depot</h4>
+                    <form class="forms-sample" action="/depot" method="post">
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group row">
@@ -200,8 +148,8 @@
                             <div class="col-sm-9">
                               <select id="exampleInputUsername2" name="action" class="form-control">
                                 <option value="">-- Sélectionnez un action --</option>
-                                <option value="1">Faire un retrait</option>
-                                <option value="2">Mettre un argent</option>
+                                <option value="1">Mettre un argent</option>
+                                <option value="2">Faire un retrait</option>
                               </select>
                             </div>
                           </div>
@@ -211,10 +159,124 @@
                               <input type="text" class="form-control" name="montant" id="exampleInputMobile" placeholder="Mobile number">
                             </div>
                           </div>
-                          
+                          <div class="form-group row">
+                            <label for="dateHeureAction" class="col-sm-3 col-form-label">Date et Heure</label>
+                            <div class="col-sm-9">
+                                <input type="datetime-local" class="form-control" name="dateHeureAction" id="dateHeureAction">
+                            </div>
+                        </div>
                         </div>  
                       </div>
-                      <button type="submit" class="btn btn-primary me-2">Inserer</button>
+                      <button type="submit" class="btn btn-primary me-2">Valider</button>
+                      <div style="margin-top:10px;">
+                        <%
+                            String reussiDepot = (String) session.getAttribute("depotReussi");
+                            if (reussiDepot != null) {
+                        %>
+                            <div class="alert alert-success" role="alert">
+                                <%= reussiDepot %>
+                            </div>
+                        <%
+                                session.removeAttribute("depotReussi"); // Afficher qu'une fois
+                            }
+                        %>
+
+                        <%-- Message erreur --%>
+                        <%
+                            String erreurDepot = (String) session.getAttribute("depotErreur");
+                            if (erreurDepot != null) {
+                        %>
+                            <div class="alert alert-danger" role="alert">
+                                <%= erreurDepot %>
+                            </div>
+                        <%
+                                session.removeAttribute("depotErreur"); // Afficher qu'une fois
+                            }
+                        %>
+                    </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Mouvement pret</h4>
+                    <form class="forms-sample" action="/pret" method="post">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="form-group row">
+                            <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Personne</label>
+                            <div class="col-sm-9">
+                              <select id="exampleInputUsername2" name="personneId" class="form-control">
+                                <option value="">-- Sélectionnez une personne --</option>
+                                <%
+                                    if (personnes != null && !personnes.isEmpty()) {
+                                        for (Personnes p : personnes) {
+                                %>
+                                    <option value="<%= p.getId() %>"><%= p.getNom() %></option>
+                                <%
+                                        }
+                                    } else {
+                                %>
+                                    <option disabled>Aucune personne disponible</option>
+                                <%
+                                    }
+                                %>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Type action</label>
+                            <div class="col-sm-9">
+                              <select id="exampleInputUsername2" name="action" class="form-control">
+                                <option value="">-- Sélectionnez un action --</option>
+                                <option value="1">Preter un argent</option>
+                                <option value="2">Rembourser l'argent</option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="exampleInputMobile" class="col-sm-3 col-form-label">Montant</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" name="montant" id="exampleInputMobile" placeholder="Mobile number">
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="dateHeureAction" class="col-sm-3 col-form-label">Date et Heure</label>
+                            <div class="col-sm-9">
+                                <input type="datetime-local" class="form-control" name="dateHeureAction" id="dateHeureAction">
+                            </div>
+                        </div>
+                        </div>  
+                      </div>
+                      <button type="submit" class="btn btn-primary me-2">Valider</button>
+                      <div style="margin-top:10px;">
+                        <%
+                            String reussiPret = (String) session.getAttribute("pretReussi");
+                            if (reussiPret != null) {
+                        %>
+                            <div class="alert alert-success" role="alert">
+                                <%= reussiPret %>
+                            </div>
+                        <%
+                                session.removeAttribute("pretReussi"); // Afficher qu'une fois
+                            }
+                        %>
+
+                        <%-- Message erreur --%>
+                        <%
+                            String erreurPret = (String) session.getAttribute("pretErreur");
+                            if (erreurPret != null) {
+                        %>
+                            <div class="alert alert-danger" role="alert">
+                                <%= erreurPret %>
+                            </div>
+                        <%
+                                session.removeAttribute("pretErreur"); // Afficher qu'une fois
+                            }
+                        %>
+                    </div>
                     </form>
                   </div>
                 </div>
