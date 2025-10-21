@@ -2,6 +2,8 @@ package com.project.controller;
 
 import com.project.service.BanqueClientService;
 import metier.entities.Compte;
+import metier.entities.VMouvementCourantNonValide;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +21,11 @@ public class BanqueController {
     @GetMapping("/comptes")
     public List<Compte> getComptes() {
         return service.getBanque().listComptes();
+    }
+
+    @GetMapping("/courants")
+    public List<VMouvementCourantNonValide> getCourants() throws Exception {
+        return service.getBanque().listMouvementCourantNonValide();
     }
 
     @PostMapping("/verser/{code}/{montant}")

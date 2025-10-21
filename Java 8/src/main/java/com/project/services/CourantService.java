@@ -2,6 +2,7 @@ package com.project.services;
 
 import com.project.dto.CourantDTO;
 import com.project.entity.Personnes;
+import metier.entities.VMouvementCourantNonValide;
 import com.project.model.Personne;
 import com.project.repository.PersonneRepository;
 import com.project.service.BanqueClientService;
@@ -27,6 +28,12 @@ public class CourantService {
         banqueClientService.getBanque().addMouvementCourant(dto.getPersonneId(), montantEnter, montantSortie, dto.getDateHeureAction());
     }
 
+    public void validerMouvement(int idMouvement) throws Exception{
+        banqueClientService.getBanque().validerMouvementCourant(idMouvement);
+    }
+
+    
+
     public List<VMontantPersonne> getAllMontantPersonnes() throws Exception{
         return banqueClientService.getBanque().findAllMontantActuelle();
     }
@@ -38,5 +45,8 @@ public class CourantService {
             }
         }
         return 0;
+    }
+    public List<VMouvementCourantNonValide> getCourantsNonValide() throws Exception {
+        return banqueClientService.getBanque().listMouvementCourantNonValide();
     }
 }

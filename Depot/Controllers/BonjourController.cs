@@ -11,6 +11,7 @@ namespace Depot.Controllers
         {
             var message = new { message = "Bonjour" };
             return Ok(message); // renvoie {"message":"Bonjour"} en JSON
+            
         }
     }
 }

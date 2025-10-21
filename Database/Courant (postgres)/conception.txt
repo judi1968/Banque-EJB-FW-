@@ -1,15 +1,11 @@
-CREATE DATABASE banque_courant;
-\c banque_courant
 CREATE TABLE mouvement_courant(
    id_mouvement SERIAL,
    id_personne INTEGER NOT NULL,
-   montant_entrer DOUBLE PRECISION   NOT NULL,
-   montant_sortie DOUBLE PRECISION   NOT NULL,
+   montant_entrer NUMERIC(15,5)   NOT NULL,
+   montant_sortie NUMERIC(15,5)   NOT NULL,
    date_mouvement TIMESTAMP NOT NULL,
    PRIMARY KEY(id_mouvement)
 );
-
-
 
 CREATE TABLE direction(
    id SERIAL,
@@ -28,9 +24,10 @@ CREATE TABLE action_role(
 
 CREATE TABLE mouvement_courant_valide(
    id_mouvement SERIAL,
-   id_mouvement_courant_fk INTEGER NOT NULL,
+   id_mouvement_1 INTEGER NOT NULL,
    PRIMARY KEY(id_mouvement),
-   FOREIGN KEY(id_mouvement_courant_fk) REFERENCES mouvement_courant(id_mouvement)
+   UNIQUE(id_mouvement_1),
+   FOREIGN KEY(id_mouvement_1) REFERENCES mouvement_courant(id_mouvement)
 );
 
 CREATE TABLE utilisateur(
@@ -38,7 +35,7 @@ CREATE TABLE utilisateur(
    login VARCHAR(50) ,
    mdp VARCHAR(50) ,
    role INTEGER NOT NULL,
-   id_direction_fk INTEGER NOT NULL,
+   id_1 INTEGER NOT NULL,
    PRIMARY KEY(id),
-   FOREIGN KEY(id_direction_fk) REFERENCES direction(id)
+   FOREIGN KEY(id_1) REFERENCES direction(id)
 );

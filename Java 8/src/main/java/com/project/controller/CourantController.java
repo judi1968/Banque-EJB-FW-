@@ -8,8 +8,10 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CourantController {
@@ -49,5 +51,21 @@ public class CourantController {
         return "redirect:/insertion"; // page du formulaire
     }
 
+    @GetMapping("/valider-mouvement")
+    public String traiterValidationMouvement(@RequestParam("id") int idMouvement, HttpSession session) throws Exception{
+        try {
+            
+
+            courantService.validerMouvement(idMouvement);
+
+            session.setAttribute("courantValideReussi", "Validation du mouvement compte courant reussi");
+            session.removeAttribute("courantValideErreur");
+        } catch (Exception e) {
+            session.setAttribute("courantValideErreur", e.getMessage());
+            session.removeAttribute("courantValideReussi");
+        }
+
+        return "redirect:/insertion";
+    }
 
 }

@@ -1,8 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.project.entity.Personnes" %>
+<%@ page import="metier.entities.VMouvementCourantNonValide" %>
 <%
   List<Personnes> personnes = (List<Personnes>) request.getAttribute("personnes");
+  List<VMouvementCourantNonValide> vMouvementCourantNonValides = (List<VMouvementCourantNonValide>) request.getAttribute("vMouvementCourantNonValides");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -282,6 +284,94 @@
                 </div>
               </div>
             </div>
+
+            <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Liste des mouvements courants non valider</h4>
+                                <div style="margin-top:10px;">
+                        <%
+                            String reussiValide = (String) session.getAttribute("courantValideReussi");
+                            if (reussiValide != null) {
+                        %>
+                            <div class="alert alert-success" role="alert">
+                                <%= reussiValide %>
+                            </div>
+                        <%
+                                session.removeAttribute("courantValideReussi"); // Afficher qu'une fois
+                            }
+                        %>
+
+                        <%-- Message erreur --%>
+                        <%
+                            String erreurValide = (String) session.getAttribute("courantValideErreur");
+                            if (erreurValide != null) {
+                        %>
+                            <div class="alert alert-danger" role="alert">
+                                <%= erreurValide %>
+                            </div>
+                        <%
+                                session.removeAttribute("courantValideErreur"); // Afficher qu'une fois
+                            }
+                        %>
+                    </div>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center;">Personne</th>
+                                                <th style="text-align: right;">Montant</th>
+                                                <th style="text-align: center;">Type</th>
+                                                <th> Action </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <%
+                                               
+                                                if(vMouvementCourantNonValides != null) {
+                                                    for(VMouvementCourantNonValide vMouvementCourantNonValide : vMouvementCourantNonValides) {
+                                            %>
+
+                                            <tr>
+                                                
+                                                 <%
+                                                      if (personnes != null && !personnes.isEmpty()) {
+                                                          for (Personnes p : personnes) {
+                                                            if(p.getId() == vMouvementCourantNonValide.getIdPersonne()){
+                                                  %>
+                                                      <td style="text-align: center;"><%= p.getNom() %></td>
+                                                  <%
+                                                            }
+                                                } }
+                                                  %>
+                                                <%  
+                                                  if(vMouvementCourantNonValide.getMontantSortie() == 0){ %>
+                                                    <td style="text-align: right;"><%= vMouvementCourantNonValide.getMontantEntrer() %></td>
+                                                  <% }else{ %>
+                                                    <td style="text-align: right;"><%= vMouvementCourantNonValide.getMontantSortie() %></td>
+                                                 <% }
+                                                %>
+                                                <%  
+                                                  if(vMouvementCourantNonValide.getMontantEntrer() == 0){ %>
+                                                    <td style="text-align: center;"><label class="badge badge-danger">Sortie</label></td>
+                                                  <% }else{ %>
+                                                    <td style="text-align: center;"><label class="badge badge-success">Entrer</label></td>
+                                                 <% }
+                                                %>
+                                                <td><a href="/valider-mouvement?id=<%= vMouvementCourantNonValide.getIdMouvement() %>" class="btn btn-primary">Valider</a></td>
+                                            </tr>
+                                            <%
+                                                    }
+                                                }
+                                            %>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
           </div>
           <!-- content-wrapper ends -->
           <!-- partial:../../partials/_footer.html -->

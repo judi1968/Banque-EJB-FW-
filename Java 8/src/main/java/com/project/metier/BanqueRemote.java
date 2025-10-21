@@ -3,7 +3,10 @@ package metier;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import metier.entities.MouvementCourant;
+
 import metier.entities.VMontantPersonne;
+import metier.entities.VMouvementCourantNonValide;
 
 import jakarta.ejb.Remote;
 import metier.entities.Compte;
@@ -19,4 +22,6 @@ public interface BanqueRemote {
 	public void addMouvementCourant(Integer idPersonne, Double montantEntrer, Double montantSortie, LocalDateTime dateMouvement ) throws Exception;
     public double getMontantActuelByPersonneId(int idPersonne) throws Exception;
     public List<VMontantPersonne> findAllMontantActuelle() throws Exception;
+    public List<VMouvementCourantNonValide> listMouvementCourantNonValide() throws Exception;
+    public void validerMouvementCourant(int idMouvement) throws Exception;
 }
